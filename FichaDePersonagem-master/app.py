@@ -43,5 +43,17 @@ def create():
         idAtribuido = registro.id
     return  render_template('create.html', idAtribuido = idAtribuido)
 
+# UPDATE
+@app.route('/update/<registroId>', methods=('GET', 'POST'))
+def update(registroId):
+    sucesso = None
+    registro = personagem.FichaPersonagem.readSingle(registroId)
+    if request.method == 'POST':
+        form = request.form
+        newData = personagem.FichaPersonagem(form['nome'], form['classe'], form['imagem'], form['forca'], form['destreza'], form['constituicao'], form['sabedoria'], form['inteligencia'], form['bio'])
+        registro.update(newData)
+        sucesso = True
+    return render_template('update.html', registro = registro, sucesso = sucesso)
+
 if __name__ == '__main__':
     app.run(debug=True)

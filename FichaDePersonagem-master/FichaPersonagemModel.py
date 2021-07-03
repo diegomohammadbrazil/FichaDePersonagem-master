@@ -39,3 +39,15 @@ class FichaPersonagem(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    def update(self, newData):
+        self.nome = newData.nome
+        self.imagem = newData.imagem
+        self.forca = newData.forca
+        self.destreza = newData.destreza
+        self.constituicao = newData.constituicao
+        self.sabedoria = newData.sabedoria
+        self.inteligencia = newData.inteligencia
+        self.bio = newData.bio
+        self.save()
+        
